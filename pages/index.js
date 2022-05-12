@@ -1,4 +1,3 @@
-import abi from '../utils/BuyMeACoffee.json';
 import { ethers } from "ethers";
 import Head from 'next/head';
 import React, { useEffect, useState } from "react";
@@ -7,7 +6,104 @@ import styles from '../styles/Home.module.css'
 export default function Home() {
   // Contract Address & ABI
   const contractAddress = "0xf6FFE4F32D664dB0ad76E3FA27B280e7AD218E35";
-  const contractABI = abi.abi;
+  const contractABI = [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "message",
+          "type": "string"
+        }
+      ],
+      "name": "NewMemo",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_name",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_message",
+          "type": "string"
+        }
+      ],
+      "name": "buyCoffee",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getMemos",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "from",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "timestamp",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "message",
+              "type": "string"
+            }
+          ],
+          "internalType": "struct BuyMeACoffee.Memo[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "withdrawTips",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ];
 
   // Component state
   const [currentAccount, setCurrentAccount] = useState("");
@@ -174,8 +270,8 @@ export default function Home() {
       <main className={styles.main}>
         <h2 className={styles.title}>
           Buy Priyank a Coffee!
-          <h6 className={styles.customi}>Please connect to the Goerli Testnet Chain</h6>
         </h2>
+        <h6 className={styles.customi}>Please connect to the Goerli Testnet Chain</h6>
         
         <br />
         <br />
